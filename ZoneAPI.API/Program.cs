@@ -1,13 +1,17 @@
 using System.Text;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
+using Zone.API;
 using Zone.API.Controllers.Hubs;
 using Zone.API.Controllers.Hubs.ChatHub;
+using Zone.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddServices();
 builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
@@ -40,6 +44,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Storage")),
+    RequestPath = "/storage"
+});
 
 app.UseAuthorization();
 

@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zone.API", "Zone.API\Zone.API.csproj", "{EEF037D5-39E4-4BA9-A45A-AAAE102D3559}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoneAPI.API", "ZoneAPI.API\ZoneAPI.API.csproj", "{EEF037D5-39E4-4BA9-A45A-AAAE102D3559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zone.Data", "Zone.Data\Zone.Data.csproj", "{FE01DE4F-01DE-4C30-B6F2-3B91195CA512}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoneAPI.Data", "ZoneAPI.Data\ZoneAPI.Data.csproj", "{FE01DE4F-01DE-4C30-B6F2-3B91195CA512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zone.Services", "Zone.Services\Zone.Services.csproj", "{7BABF79A-DC4B-4624-9734-907C0008B19C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoneAPI.Services", "ZoneAPI.Services\ZoneAPI.Services.csproj", "{7BABF79A-DC4B-4624-9734-907C0008B19C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zone.Test", "Zone.Test\Zone.Test.csproj", "{3668338D-D390-4E6E-8E59-D670C128507B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoneAPI.Test", "ZoneAPI.Test\ZoneAPI.Test.csproj", "{3668338D-D390-4E6E-8E59-D670C128507B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

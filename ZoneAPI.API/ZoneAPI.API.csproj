@@ -4,6 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>Zone.API</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Zone.Services\Zone.Services.csproj" />
+      <ProjectReference Include="..\ZoneAPI.Services\ZoneAPI.Services.csproj" />
     </ItemGroup>
 
 </Project>
