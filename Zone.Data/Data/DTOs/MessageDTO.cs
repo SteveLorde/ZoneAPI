@@ -1,6 +1,6 @@
 ﻿namespace Zone.Data.Data.DTOs;
 
-public record Message
+public record MessageDTO
 {
     public Guid ZoneId { get; set; }
     public Guid UserId { get; set; }
