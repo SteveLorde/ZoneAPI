@@ -1,6 +1,6 @@
 ﻿namespace Zone.Data.Data.Models;
 
-public class Zone
+public class ZoneLobby
 {
     public Guid Id { get; set; }
     public string Title { get; set; }

@@ -13,10 +13,10 @@ public class AutoMappingProfile : Profile
         //MODEL TO DTO
         CreateMap<User, UserDTO>();
         CreateMap<User, UserResponseDTO>();
-        CreateMap<Data.Data.Models.Zone, ZoneResponseDTO>();
+        CreateMap<Data.Data.Models.ZoneLobby, ZoneResponseDTO>();
 
         //DTO TO MODEL
-        CreateMap<NewZoneRequestDTO, Data.Data.Models.Zone>();
+        CreateMap<NewZoneRequestDTO, Data.Data.Models.ZoneLobby>();
         CreateMap<UserDTO, User>();
     }
 }

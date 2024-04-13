@@ -17,7 +17,7 @@ public static class ServicesRegister
         serviceCollection.AddScoped<IJWT, JWT.JWT>();
         serviceCollection.AddScoped<IAuthentication, Authentication.Authentication>();
         serviceCollection.AddScoped<IPasswordHash,PasswordHash.PasswordHash>();
-        serviceCollection.AddScoped<IZoneService, >();
+        serviceCollection.AddScoped<IZoneService, ZoneService >();
         serviceCollection.AddScoped<IUserRepo, UserRepo>();
         serviceCollection.AddAutoMapper(typeof(AutoMappingProfile));
         

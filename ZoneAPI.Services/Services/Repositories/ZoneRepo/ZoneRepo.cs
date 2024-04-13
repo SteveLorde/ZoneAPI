@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Zone.Data.Data;
 using Zone.Data.Data.DTOs.Responses;
+using Zone.Data.Data.Models;
 
 namespace Zone.Services.Services.Repositories.ZoneRepo;
 
@@ -27,23 +28,28 @@ public class ZoneRepo : IZoneRepo
         return await _db.Zones.ProjectTo<ZoneResponseDTO>(_mapper.ConfigurationProvider).FirstAsync(zone => zone.Id == zoneId);
     }
 
-    public async Task<bool> AddZone(Data.Data.Models.Zone newZone)
+    public async Task<ZoneLobby> GetZoneDirectly(Guid zoneId)
+    {
+        return await _db.Zones.FirstAsync(zone => zone.Id == zoneId);
+    }
+
+    public async Task<bool> AddZone(Data.Data.Models.ZoneLobby newZoneLobby)
     { 
-        await _db.Zones.AddAsync(newZone);
+        await _db.Zones.AddAsync(newZoneLobby);
         await _db.SaveChangesAsync();
         return true;
     }
 
-    public async Task<bool> UpdateZone(Data.Data.Models.Zone updatedZone)
+    public async Task<bool> UpdateZone(Data.Data.Models.ZoneLobby updatedZoneLobby)
     {
-        _db.Update(updatedZone);
+        _db.Update(updatedZoneLobby);
         await _db.SaveChangesAsync();
         return true;
     }
 
-    public async Task<bool> RemoveZone(Data.Data.Models.Zone zoneToRemove)
+    public async Task<bool> RemoveZone(Data.Data.Models.ZoneLobby zoneLobbyToRemove)
     {
-        _db.Zones.Remove(zoneToRemove);
+        _db.Zones.Remove(zoneLobbyToRemove);
         await _db.SaveChangesAsync();
         return true;
     }

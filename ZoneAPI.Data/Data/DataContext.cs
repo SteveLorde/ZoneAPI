@@ -19,7 +19,7 @@ public class DataContext : DbContext
     }
     
     
-    public DbSet<Models.Zone> Zones { get; set; }
+    public DbSet<Models.ZoneLobby> Zones { get; set; }
     public DbSet<Note> Notes { get; set; }
     public DbSet<User> Users { get; set; }
 }

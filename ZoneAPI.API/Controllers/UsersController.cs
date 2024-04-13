@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Zone.Data.Data.Models;
 using Zone.Services.Services.Repositories.UserRepo;
 
 namespace Zone.API.Controllers;
@@ -12,6 +13,18 @@ public class UsersController
     public UsersController(IUserRepo userRepo)
     {
         _userRepo = userRepo;
+    }
+    
+    [HttpGet("getusers")]
+    public async Task<List<User>> GetUsers()
+    {
+        return await _userRepo.GetUsers();
+    }
+    
+    [HttpGet("getuser/{userId}")]
+    public async Task<User> GetUser(string userId)
+    {
+        return await _userRepo.GetUser(Guid.Parse(userId));
     }
     
     

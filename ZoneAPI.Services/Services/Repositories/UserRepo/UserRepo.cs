@@ -24,9 +24,9 @@ public class UserRepo : IUserRepo
         return await _db.Users.ToListAsync();
     }
 
-    public async Task<User> GetUser(string userId)
+    public async Task<User> GetUser(Guid userId)
     {
-        return await _db.Users.FirstAsync(user => user.Id == Guid.Parse(userId));
+        return await _db.Users.FirstAsync(user => user.Id == userId);
     }
 
     public async Task<bool> CheckUserExists(string userName)

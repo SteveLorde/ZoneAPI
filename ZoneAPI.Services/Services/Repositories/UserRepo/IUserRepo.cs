@@ -7,7 +7,7 @@ namespace Zone.Services.Services.Repositories.UserRepo;
 public interface IUserRepo
 {
     public Task<List<User>> GetUsers();
-    public Task<User> GetUser(string userId);
+    public Task<User> GetUser(Guid userId);
     public Task<bool> CheckUserExists(string userName);
     public Task<UserToLoginDataDTO> GetHashedpassword(string userName);
     public Task<bool> AddUser(UserDTO newUserDTO, string hashedPassword);
