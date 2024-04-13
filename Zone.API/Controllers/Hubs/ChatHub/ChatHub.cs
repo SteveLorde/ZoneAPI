@@ -35,7 +35,7 @@ public class ChatHub : Hub
     {
         var zone = await _zoneService.GetZone(Guid.Parse(zoneId));
         await Groups.AddToGroupAsync(Context.ConnectionId, zone.Id.ToString());
-        await Clients.Group(zone.Id.ToString()).SendAsync("JoinedLobby", true);
+        await Clients.Group(zone.Id.ToString()).SendAsync("JoinedZone", $"User {Context.ConnectionId} joined Zone {zone.Id.ToString()}");
     }
     
     

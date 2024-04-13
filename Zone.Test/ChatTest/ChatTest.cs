@@ -9,15 +9,16 @@ public class ChatTest
 {
     private HttpClient _httpClient = new HttpClient();
     private ITestOutputHelper _outputHelper = new TestOutputHelper();
-    private HubConnectionBuilder _hubConnectionBuilder = new HubConnectionBuilder();
-    private string connectionURL = testURL;
+    private static string _connectionUrl = testURL;
+    private static HubConnectionBuilder _hubConnectionBuilder = new HubConnectionBuilder();
+    private HubConnection _hubConnection = _hubConnectionBuilder.WithUrl(_connectionUrl).Build();
+
     
     [Fact]
     public async void ConnectTest()
     {
-        HubConnection hubConnection = _hubConnectionBuilder.WithUrl(connectionURL).Build();
-        await hubConnection.StartAsync();
-        hubConnection.On<string>("connect", message =>
+        await _hubConnection.StartAsync();
+        _hubConnection.On<string>("connect", message =>
         {
             _outputHelper.WriteLine(message);
         });
@@ -26,13 +27,15 @@ public class ChatTest
     [Fact]
     public async void JoinLobbyTest()
     {
-        
+        await _hubConnection.InvokeAsync("JoinZone", "12344");
+        _hubConnection.On<string>("JoinedZone", message => _outputHelper.WriteLine(message));
     }
     
     [Fact]
     public async void SendMessageTest()
     {
-        
+        await _hubConnection.InvokeAsync("SendMessage", "testing");
+        _hubConnection.On<string>("ReceivedMessage", message => _outputHelper.WriteLine(message));
     }
     
     
