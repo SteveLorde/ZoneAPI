@@ -18,6 +18,8 @@ public class DataContext : DbContext
         optionsBuilder.UseNpgsql(_configuration["DatabaseConnection"]);
     }
     
+    
     public DbSet<Models.Zone> Zones { get; set; }
-    private DbSet<User> Users { get; set; }
+    public DbSet<Note> Notes { get; set; }
+    public DbSet<User> Users { get; set; }
 }

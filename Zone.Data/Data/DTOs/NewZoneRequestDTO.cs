@@ -1,0 +1,8 @@
+﻿namespace Zone.Data.Data.DTOs;
+
+public record NewZoneRequestDTO
+{
+    public string Title { get; set; }
+    public Guid UserId { get; set; }
+    public DateTime CreatedOn { get; set; } = DateTime.Today;
+};

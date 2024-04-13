@@ -4,6 +4,7 @@ public class User
 {
     public Guid Id { get; set; }
     public string UserName { get; set; }
-    public string HashedPassword { get; set; }
+    public string? HashedPassword { get; set; }
     public List<Zone> Zones { get; set; }
+    public DateTime JoinedOn { get; set; } = DateTime.Today;
 }
