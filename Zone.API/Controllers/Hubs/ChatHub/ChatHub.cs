@@ -5,7 +5,7 @@ using Zone.Services.Services.Zone;
 
 namespace Zone.API.Controllers.Hubs.ChatHub;
 
-[Authorize]
+//[Authorize]
 public class ChatHub : Hub
 {
     private readonly IZoneService _zoneService;
