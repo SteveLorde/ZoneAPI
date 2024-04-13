@@ -1,4 +1,4 @@
-﻿namespace Zone.Data.Data.DTOs;
+﻿namespace Zone.Data.Data.DTOs.Responses;
 
 public record UserResponseDTO
 {

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Zone.Data.Data.DTOs;
+using Zone.Data.Data.DTOs.Requests;
 using Zone.Services.Services.Authentication.DTO;
 using Zone.Services.Services.JWT;
+using Zone.Services.Services.JWT.DTO;
 using Zone.Services.Services.PasswordHash;
 using Zone.Services.Services.Repositories.UserRepo;
 

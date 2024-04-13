@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Zone.Data.Data.DTOs;
+using Zone.Data.Data.DTOs.Requests;
 using Zone.Data.Data.Models;
 
 namespace Zone.Services.Services.AutoMapping;

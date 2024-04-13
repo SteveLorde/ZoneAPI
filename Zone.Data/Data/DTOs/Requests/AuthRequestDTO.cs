@@ -1,4 +1,4 @@
-﻿namespace Zone.Data.Data.DTOs;
+﻿namespace Zone.Data.Data.DTOs.Requests;
 
 public record AuthRequestDTO()
 {

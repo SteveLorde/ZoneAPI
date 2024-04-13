@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Zone.API.Controllers.Hubs;
+using Zone.API.Controllers.Hubs.ChatHub;
 
 var builder = WebApplication.CreateBuilder(args);
 

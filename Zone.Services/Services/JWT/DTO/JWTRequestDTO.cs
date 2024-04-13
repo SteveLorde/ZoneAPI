@@ -1,4 +1,4 @@
-﻿namespace Zone.Data.Data.DTOs;
+﻿namespace Zone.Services.Services.JWT.DTO;
 
 public record JWTRequestDTO
 {
