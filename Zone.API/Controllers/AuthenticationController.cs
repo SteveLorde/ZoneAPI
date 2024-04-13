@@ -23,7 +23,6 @@ public class AuthenticationController : Controller
     }
     
     [HttpPost("register")]
-    [Produces("application/json")]
     public async Task<bool> Register(AuthRequestDTO registerRequest)
     {
         return await _authService.Register(registerRequest);
