@@ -15,6 +15,17 @@ public class ChatHub : Hub
         _zoneService = zoneService;
     }
     
+    public override async Task OnConnectedAsync()
+    {
+        await Clients.All.SendAsync("connect", "SignalR Backend saying Hello :)");
+        await base.OnConnectedAsync();
+    }
+    
+    public override async Task OnDisconnectedAsync(Exception? exception)
+    {
+        await base.OnDisconnectedAsync(exception);
+    }
+    
     public async Task SendMessage(MessageDTO newMessageDto)
     {
         await Clients.Group(newMessageDto.ZoneId.ToString()).SendAsync("ReceiveMessage", newMessageDto);
@@ -24,7 +35,10 @@ public class ChatHub : Hub
     {
         var zone = await _zoneService.GetZone(Guid.Parse(zoneId));
         await Groups.AddToGroupAsync(Context.ConnectionId, zone.Id.ToString());
+        await Clients.Group(zone.Id.ToString()).SendAsync("JoinedLobby", true);
     }
+    
+    
     
     
 }
