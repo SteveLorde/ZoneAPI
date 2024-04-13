@@ -49,13 +49,17 @@ public class ZoneService : IZoneService
         return await _zoneRepo.UpdateZone(zone);
     }
 
-    public async Task RemoveUserFromZone(Guid userId, Guid zoneId)
+    public async Task<bool> RemoveUserFromZone(Guid userId, Guid zoneId)
     {
-        throw new NotImplementedException();
+        User user = await _userRepo.GetUser(userId);
+        ZoneLobby zoneLobby = await _zoneRepo.GetZoneDirectly(zoneId);
+        zoneLobby.Users.Remove(user);
+        return await _zoneRepo.UpdateZone(zoneLobby);
     }
 
-    public async Task DeleteZone(Guid zoneId)
+    public async Task<bool> DeleteZone(Guid zoneId)
     {
-        throw new NotImplementedException();
+        ZoneLobby zoneLobby = await _zoneRepo.GetZoneDirectly(zoneId);
+        return await _zoneRepo.RemoveZone(zoneLobby);
     }
 }

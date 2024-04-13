@@ -33,21 +33,21 @@ public class ZoneRepo : IZoneRepo
         return await _db.Zones.FirstAsync(zone => zone.Id == zoneId);
     }
 
-    public async Task<bool> AddZone(Data.Data.Models.ZoneLobby newZoneLobby)
+    public async Task<bool> AddZone(ZoneLobby newZoneLobby)
     { 
         await _db.Zones.AddAsync(newZoneLobby);
         await _db.SaveChangesAsync();
         return true;
     }
 
-    public async Task<bool> UpdateZone(Data.Data.Models.ZoneLobby updatedZoneLobby)
+    public async Task<bool> UpdateZone(ZoneLobby updatedZoneLobby)
     {
         _db.Update(updatedZoneLobby);
         await _db.SaveChangesAsync();
         return true;
     }
 
-    public async Task<bool> RemoveZone(Data.Data.Models.ZoneLobby zoneLobbyToRemove)
+    public async Task<bool> RemoveZone(ZoneLobby zoneLobbyToRemove)
     {
         _db.Zones.Remove(zoneLobbyToRemove);
         await _db.SaveChangesAsync();

@@ -10,6 +10,6 @@ public interface IZoneService
     public Task<ZoneResponseDTO> GetZone(Guid zoneId);
     public Task<bool> CreateZone(NewZoneRequestDTO newZoneRequest);
     public Task<bool> AddUserToZone(Guid userId, Guid zoneId);
-    public Task RemoveUserFromZone(Guid userId, Guid zoneId);
-    public Task DeleteZone(Guid zoneId);
+    public Task<bool> RemoveUserFromZone(Guid userId, Guid zoneId);
+    public Task<bool> DeleteZone(Guid zoneId);
 }
