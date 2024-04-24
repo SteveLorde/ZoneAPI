@@ -29,7 +29,7 @@ public class ZoneController : Controller
     }
     
     [HttpPost("createzone")]
-    public async Task<bool> CreateZone(NewZoneRequestDTO newZoneRequest)
+    public async Task<Guid> CreateZone(NewZoneRequestDTO newZoneRequest)
     {
         return await _zoneService.CreateZone(newZoneRequest);
     }

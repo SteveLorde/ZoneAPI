@@ -21,7 +21,7 @@ public class UserRepo : IUserRepo
     
     public async Task<List<User>> GetUsers()
     {
-        return await _db.Users.ToListAsync();
+        return await _db.Users.Include(user => user.JoinedZones).ToListAsync();
     }
 
     public async Task<User> GetUser(Guid userId)

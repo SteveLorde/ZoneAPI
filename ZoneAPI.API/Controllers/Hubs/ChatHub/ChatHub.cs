@@ -40,10 +40,7 @@ public class ChatHub : Hub
        // bool checkZoneExists = await _zoneService.CheckZoneExists(newZoneRequest);
         //2-create zone in database
         Guid createdZoneId = await _zoneService.CreateZone(newZoneRequest);
-        if (createdZoneId != Guid.Empty)
-        {
-            return createdZoneId;
-        }
+        return createdZoneId;
     }
 
     public async Task JoinZone(string zoneId, string userId)

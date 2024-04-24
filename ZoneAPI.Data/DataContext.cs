@@ -20,7 +20,6 @@ public class DataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //modelBuilder.Entity<UsersInZones>().HasNoKey();
         modelBuilder.Entity<User>()
             .HasMany(e => e.CreatedZones)
             .WithOne(e => e.UserOwner)
@@ -31,10 +30,6 @@ public class DataContext : DbContext
             .HasMany(e => e.JoinedZones)
             .WithMany(e => e.JoinedUsers)
             .UsingEntity<UsersInZones>();
-
-        modelBuilder.Entity<UsersInZones>().HasData([
-            new UsersInZones{}
-        ]);
     }
     
     

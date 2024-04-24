@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Zone.API;
@@ -10,8 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});;;
 builder.Services.AddServices();
+builder.Services.RunServices();
 builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
@@ -42,6 +47,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(options => options.WithOrigins("https://zone-bice.vercel.app/","http://localhost:5116").AllowAnyHeader().AllowAnyMethod());
 app.UseHttpsRedirection();
 app.UseStaticFiles(new StaticFileOptions
 {

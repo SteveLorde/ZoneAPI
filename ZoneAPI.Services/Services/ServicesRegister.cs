@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Zone.Data;
 using Zone.Services.Services.Authentication;
@@ -28,10 +29,12 @@ public static class ServicesRegister
         serviceCollection.AddScoped<IZoneRepo, ZoneRepo>();
         serviceCollection.AddScoped<IDataSeed, DataSeed.DataSeed>();
         serviceCollection.AddAutoMapper(typeof(AutoMappingProfile));
-        
-        IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-        serviceProvider.GetService<DataContext>().Database.Migrate();
-        serviceProvider.GetService<IDataSeed>().SeedData();
+    }
 
+    public static void RunServices(this IServiceCollection serviceCollection)
+    {
+        IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
+        serviceProvider.GetService<DataContext>()?.Database.Migrate();
+        serviceProvider.GetService<IDataSeed>()?.SeedData();
     }
 }
