@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Zone.Data.Data.DTOs;
-using Zone.Data.Data.DTOs.Requests;
+using Zone.Data.DTOs;
+using Zone.Data.DTOs.Requests;
 using Zone.Services.Services.Authentication.DTO;
 using Zone.Services.Services.JWT;
 using Zone.Services.Services.JWT.DTO;
@@ -63,7 +63,7 @@ public class Authentication : IAuthentication
         else
         {
             //map new user data from registerreq
-            UserDTO  newUserDto = _mapper.Map<UserDTO>(registerReq);
+            UserDTO newUserDto = _mapper.Map<UserDTO>(registerReq);
             //1-hash password
             string hashedpassword =  _passwordHash.CreateHashedPassword(newUserDto.Password);
             //2-add to database

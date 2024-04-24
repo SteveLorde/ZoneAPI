@@ -26,7 +26,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
         ValidateIssuer = true,
         ValidIssuer = builder.Configuration["URL"],
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["secretkey"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["SECRETKEY"]))
     };
 });
 
@@ -42,7 +42,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles(new StaticFileOptions
 {
@@ -50,11 +49,7 @@ app.UseStaticFiles(new StaticFileOptions
         Path.Combine(builder.Environment.ContentRootPath, "Storage")),
     RequestPath = "/storage"
 });
-
 app.UseAuthorization();
-
 app.MapControllers();
 app.MapHub<ChatHub>("/Chat");
-
-
-app.Run();
+app.Run(builder.Configuration["URL"]);

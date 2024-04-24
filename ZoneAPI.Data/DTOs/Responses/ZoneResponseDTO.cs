@@ -1,6 +1,6 @@
-﻿using Zone.Data.Data.Models;
+﻿using Zone.Data.Models;
 
-namespace Zone.Data.Data.DTOs.Responses;
+namespace Zone.Data.DTOs.Responses;
 
 public record ZoneResponseDTO
 {

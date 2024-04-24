@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Zone.Data.Data;
-using Zone.Data.Data.DTOs;
-using Zone.Data.Data.Models;
+using Zone.Data;
+using Zone.Data.DTOs;
+using Zone.Data.Models;
 using Zone.Services.Services.Authentication.DTO;
 
 namespace Zone.Services.Services.Repositories.UserRepo;

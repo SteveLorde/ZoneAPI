@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Zone.Data.Data.DTOs;
-using Zone.Data.Data.DTOs.Requests;
+using Zone.Data.DTOs.Requests;
 using Zone.Services.Services.Authentication;
 
 namespace Zone.API.Controllers;

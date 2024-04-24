@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Zone.Data.Data.Models;
+using Zone.Data.Models;
 using Zone.Services.Services.Repositories.UserRepo;
 
 namespace Zone.API.Controllers;

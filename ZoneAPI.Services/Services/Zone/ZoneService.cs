@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Zone.Data.Data.DTOs.Requests;
-using Zone.Data.Data.DTOs.Responses;
-using Zone.Data.Data.Models;
+using Zone.Data.DTOs.Requests;
+using Zone.Data.DTOs.Responses;
+using Zone.Data.Models;
 using Zone.Services.Services.Repositories.UserRepo;
 using Zone.Services.Services.Repositories.ZoneRepo;
 
@@ -24,16 +24,31 @@ public class ZoneService : IZoneService
     {
         return await _zoneRepo.GetZones();
     }
+    
+    /*
+    public async Task<bool> CheckZoneExists(NewZoneRequestDTO newZoneRequest)
+    {
+        return await _zoneRepo.
+    }
+    */
 
     public async Task<ZoneResponseDTO> GetZone(Guid zoneId)
     {
         return await _zoneRepo.GetZone(zoneId);
     }
 
-    public async Task<bool> CreateZone(NewZoneRequestDTO newZoneRequest)
+    public async Task<Guid> CreateZone(NewZoneRequestDTO newZoneRequest)
     {
-        Data.Data.Models.ZoneLobby newZoneLobby = _mapper.Map<Data.Data.Models.ZoneLobby>(newZoneRequest);
-        return await _zoneRepo.AddZone(newZoneLobby);
+        ZoneLobby newZoneLobby = _mapper.Map<ZoneLobby>(newZoneRequest);
+        bool checkAdd = await _zoneRepo.AddZone(newZoneLobby);
+        if (checkAdd)
+        {
+            return newZoneLobby.Id;
+        }
+        else
+        {
+            return Guid.Empty;
+        }
     }
 
     public async Task<bool> AddUserToZone(Guid userId, Guid zoneId)
@@ -43,7 +58,7 @@ public class ZoneService : IZoneService
         var zone = await _zoneRepo.GetZoneDirectly(zoneId);
         
         //add user
-        zone.Users.Add(user);
+        //zone.JoinedUsers.Add(user);
         
         //update zone
         return await _zoneRepo.UpdateZone(zone);
@@ -53,7 +68,7 @@ public class ZoneService : IZoneService
     {
         User user = await _userRepo.GetUser(userId);
         ZoneLobby zoneLobby = await _zoneRepo.GetZoneDirectly(zoneId);
-        zoneLobby.Users.Remove(user);
+        //zoneLobby.JoinedUsers.Remove(user);
         return await _zoneRepo.UpdateZone(zoneLobby);
     }
 

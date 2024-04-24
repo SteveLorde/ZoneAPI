@@ -2,7 +2,7 @@
 using System.Text;
 using Xunit.Abstractions;
 using Xunit.Sdk;
-using Zone.Data.Data.DTOs.Requests;
+using Zone.Data.DTOs.Requests;
 using static Zone.Test.Variables;
 
 namespace Zone.Test.AuthenticationTest;

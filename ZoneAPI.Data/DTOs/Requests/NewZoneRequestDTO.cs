@@ -1,4 +1,4 @@
-﻿namespace Zone.Data.Data.DTOs.Requests;
+﻿namespace Zone.Data.DTOs.Requests;
 
 public record NewZoneRequestDTO
 {

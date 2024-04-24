@@ -1,4 +1,4 @@
-﻿using Zone.Data.Data.Models;
+﻿using Zone.Data.Models;
 
 namespace Zone.Services.Services.Repositories.NotesRepo;
 

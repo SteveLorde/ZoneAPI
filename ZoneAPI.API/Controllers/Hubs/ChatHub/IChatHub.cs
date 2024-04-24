@@ -1,5 +1,6 @@
 ﻿namespace Zone.API.Controllers.Hubs.ChatHub;
 
+/*
 public interface IChatHub<T>
 {
     public Task SendMessage();
@@ -7,3 +8,4 @@ public interface IChatHub<T>
     public Task LeaveZone();
     
 }
+*/

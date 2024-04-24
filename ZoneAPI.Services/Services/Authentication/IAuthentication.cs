@@ -1,5 +1,4 @@
-﻿using Zone.Data.Data.DTOs;
-using Zone.Data.Data.DTOs.Requests;
+﻿using Zone.Data.DTOs.Requests;
 
 namespace Zone.Services.Services.Authentication;
 

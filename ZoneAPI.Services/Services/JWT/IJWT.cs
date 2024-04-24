@@ -1,5 +1,4 @@
-﻿using Zone.Data.Data.DTOs;
-using Zone.Services.Services.JWT.DTO;
+﻿using Zone.Services.Services.JWT.DTO;
 
 namespace Zone.Services.Services.JWT;
 

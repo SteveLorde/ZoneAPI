@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Zone.Data.Data.DTOs;
-using Zone.Data.Data.DTOs.Requests;
-using Zone.Data.Data.DTOs.Responses;
-using Zone.Data.Data.Models;
+using Zone.Data.DTOs;
+using Zone.Data.DTOs.Requests;
+using Zone.Data.DTOs.Responses;
+using Zone.Data.Models;
 
 namespace Zone.Services.Services.AutoMapping;
 
@@ -13,10 +13,10 @@ public class AutoMappingProfile : Profile
         //MODEL TO DTO
         CreateMap<User, UserDTO>();
         CreateMap<User, UserResponseDTO>();
-        CreateMap<Data.Data.Models.ZoneLobby, ZoneResponseDTO>();
+        CreateMap<ZoneLobby, ZoneResponseDTO>();
 
         //DTO TO MODEL
-        CreateMap<NewZoneRequestDTO, Data.Data.Models.ZoneLobby>();
+        CreateMap<NewZoneRequestDTO, ZoneLobby>();
         CreateMap<UserDTO, User>();
     }
 }

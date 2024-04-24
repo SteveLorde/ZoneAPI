@@ -1,5 +1,5 @@
-﻿using Zone.Data.Data.DTOs;
-using Zone.Data.Data.Models;
+﻿using Zone.Data.DTOs;
+using Zone.Data.Models;
 using Zone.Services.Services.Authentication.DTO;
 
 namespace Zone.Services.Services.Repositories.UserRepo;

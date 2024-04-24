@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using Zone.Data.Data;
-using Zone.Data.Data.DTOs.Responses;
-using Zone.Data.Data.Models;
+using Zone.Data;
+using Zone.Data.DTOs.Responses;
+using Zone.Data.Models;
 
 namespace Zone.Services.Services.Repositories.ZoneRepo;
 
