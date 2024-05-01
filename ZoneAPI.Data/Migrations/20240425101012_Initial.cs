@@ -31,6 +31,7 @@ namespace Zone.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
+                    HashedPassword = table.Column<string>(type: "text", nullable: false),
                     UserOwnerId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>

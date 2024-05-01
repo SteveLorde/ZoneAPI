@@ -21,15 +21,16 @@ public class JWT : IJWT
     
     public JWT(IConfiguration config, IHttpContextAccessor httpContextAccessor)
     {
+        _httpContextAccessor = httpContextAccessor;
         _config = config;
         jwtseckey = _config["secretkey"];
-        baseUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}{_httpContextAccessor.HttpContext.Request.PathBase}";
+        baseUrl = "";
         audienceClientURL = _config["audienceURL"];
-        _httpContextAccessor = httpContextAccessor;
     }
 
     public string CreateToken(JWTRequestDTO userjwtreq)
     {
+        baseUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}{_httpContextAccessor.HttpContext.Request.PathBase}";
         List<Claim> claims = new List<Claim>
         {
             new Claim("userid", userjwtreq.Id.ToString()),

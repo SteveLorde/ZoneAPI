@@ -24,7 +24,7 @@ public class Authentication : IAuthentication
         _jwtService = jwtService;
     }
     
-    public async Task<string> Login(AuthRequestDTO loginReq)
+    public async Task<string> Login(LoginRequestDTO loginReq)
     {
         string token = "";
         //1st, check username in database
@@ -52,7 +52,7 @@ public class Authentication : IAuthentication
         }
     }
 
-    public async Task<bool> Register(AuthRequestDTO registerReq)
+    public async Task<bool> Register(RegisterRequestDTO registerReq)
     {
         //check is userexists
         bool checkUserExists = await CheckIfUserExists(registerReq.UserName);

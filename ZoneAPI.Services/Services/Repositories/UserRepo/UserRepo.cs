@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Zone.Data;
 using Zone.Data.DTOs;
+using Zone.Data.DTOs.Responses;
 using Zone.Data.Models;
 using Zone.Services.Services.Authentication.DTO;
 
@@ -19,12 +21,17 @@ public class UserRepo : IUserRepo
     }
     
     
-    public async Task<List<User>> GetUsers()
+    public async Task<List<UserResponseDTO>> GetUsers()
     {
-        return await _db.Users.Include(user => user.JoinedZones).ToListAsync();
+        return await _db.Users.Include(user => user.JoinedZones).ProjectTo<UserResponseDTO>(_mapper.ConfigurationProvider).ToListAsync();
     }
 
-    public async Task<User> GetUser(Guid userId)
+    public async Task<UserResponseDTO> GetUser(Guid userId)
+    {
+        return await _db.Users.ProjectTo<UserResponseDTO>(_mapper.ConfigurationProvider).FirstAsync(user => user.Id == userId);
+    }
+
+    public async Task<User> GetUserDirectly(Guid userId)
     {
         return await _db.Users.FirstAsync(user => user.Id == userId);
     }

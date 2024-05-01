@@ -12,4 +12,5 @@ public interface IZoneService
     public Task<bool> AddUserToZone(Guid userId, Guid zoneId);
     public Task<bool> RemoveUserFromZone(Guid userId, Guid zoneId);
     public Task<bool> DeleteZone(Guid zoneId);
+    public Task<bool> CheckZoneExists(Guid zoneId);
 }

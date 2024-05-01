@@ -66,9 +66,9 @@ public class ZoneService : IZoneService
 
     public async Task<bool> RemoveUserFromZone(Guid userId, Guid zoneId)
     {
-        User user = await _userRepo.GetUser(userId);
+        User user = await _userRepo.GetUserDirectly(userId);
         ZoneLobby zoneLobby = await _zoneRepo.GetZoneDirectly(zoneId);
-        //zoneLobby.JoinedUsers.Remove(user);
+        zoneLobby.JoinedUsers.Remove(user);
         return await _zoneRepo.UpdateZone(zoneLobby);
     }
 
@@ -76,5 +76,10 @@ public class ZoneService : IZoneService
     {
         ZoneLobby zoneLobby = await _zoneRepo.GetZoneDirectly(zoneId);
         return await _zoneRepo.RemoveZone(zoneLobby);
+    }
+
+    public async Task<bool> CheckZoneExists(Guid zoneId)
+    {
+        return await _zoneRepo.CheckZoneExists(zoneId);
     }
 }

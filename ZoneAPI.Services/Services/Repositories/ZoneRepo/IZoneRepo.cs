@@ -8,7 +8,7 @@ public interface IZoneRepo
     public Task<List<ZoneResponseDTO>> GetZones();
     public Task<ZoneResponseDTO> GetZone(Guid zoneId);
     public Task<ZoneLobby> GetZoneDirectly(Guid zoneId);
-    //public Task<bool> CheckZoneExists();
+    public Task<bool> CheckZoneExists(Guid zoneId);
     public Task<bool> AddZone(ZoneLobby newZoneLobby);
     public Task<bool> UpdateZone(ZoneLobby updatedZoneLobby);
     public Task<bool> RemoveZone(ZoneLobby zoneLobbyToRemove);

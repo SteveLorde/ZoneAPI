@@ -5,9 +5,8 @@ using Zone.Services.Services.Zone;
 
 namespace Zone.API.Controllers;
 
-[ApiController]
 [Route("zone")]
-public class ZoneController : Controller
+public class ZoneController : BaseController
 {
     private readonly IZoneService _zoneService;
 

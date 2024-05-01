@@ -4,5 +4,6 @@ public record NewZoneRequestDTO
 {
     public string Title { get; set; }
     public Guid UserId { get; set; }
+    public string Password { get; set; }
     public DateTime CreatedOn { get; set; } = DateTime.Today;
 };

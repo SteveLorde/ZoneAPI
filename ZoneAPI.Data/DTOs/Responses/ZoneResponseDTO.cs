@@ -4,10 +4,10 @@ namespace Zone.Data.DTOs.Responses;
 
 public record ZoneResponseDTO
 {
-    public Guid Id { get; set; }
-    public string Title { get; set; }
-    public List<Note> Notes { get; set; }
-    public Guid UserId { get; set; }
-    public User UserOwner { get; set; }
-    public List<User> Users { get; set; }
+    public Guid Id { get; set; } 
+    public string Title { get; set; } 
+    public List<NoteResponseDTO> Notes { get; set; }
+    public Guid UserOwnerId { get; set; }
+    public UserResponseDTO UserOwner { get; set; }
+    public List<UserResponseDTO> JoinedUsers { get; set; }
 };

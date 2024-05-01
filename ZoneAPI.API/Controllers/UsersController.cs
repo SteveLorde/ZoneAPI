@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Zone.Data.DTOs.Responses;
 using Zone.Data.Models;
 using Zone.Services.Services.Repositories.UserRepo;
 
 namespace Zone.API.Controllers;
 
-[ApiController]
 [Route("users")]
-public class UsersController
+public class UsersController : BaseController
 {
     private readonly IUserRepo _userRepo;
 
@@ -16,13 +16,13 @@ public class UsersController
     }
     
     [HttpGet("getusers")]
-    public async Task<List<User>> GetUsers()
+    public async Task<List<UserResponseDTO>> GetUsers()
     {
         return await _userRepo.GetUsers();
     }
     
     [HttpGet("getuser/{userId}")]
-    public async Task<User> GetUser(string userId)
+    public async Task<UserResponseDTO> GetUser(string userId)
     {
         return await _userRepo.GetUser(Guid.Parse(userId));
     }

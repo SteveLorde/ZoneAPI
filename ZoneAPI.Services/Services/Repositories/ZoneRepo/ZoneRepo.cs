@@ -53,4 +53,9 @@ public class ZoneRepo : IZoneRepo
         await _db.SaveChangesAsync();
         return true;
     }
+
+    public async Task<bool> CheckZoneExists(Guid zoneId)
+    {
+        return await _db.Zones.AnyAsync(zone => zone.Id == zoneId);
+    }
 }

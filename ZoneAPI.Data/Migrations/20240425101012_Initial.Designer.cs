@@ -12,7 +12,7 @@ using Zone.Data;
 namespace Zone.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240424181840_Initial")]
+    [Migration("20240425101012_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -91,6 +91,10 @@ namespace Zone.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("HashedPassword")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()

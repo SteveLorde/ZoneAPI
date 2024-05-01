@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Zone.Data.DTOs;
@@ -7,8 +8,7 @@ using Zone.Services.Services.Zone;
 
 namespace Zone.API.Controllers.Hubs.ChatHub;
 
-[Authorize]
-public class ChatHub : Hub
+public class ChatHub : BaseHub
 {
     private readonly IZoneService _zoneService;
 
@@ -19,8 +19,7 @@ public class ChatHub : Hub
     
     public override async Task OnConnectedAsync()
     {
-        await Clients.All.SendAsync("connected", "SignalR Backend saying Hello :)");
-        await base.OnConnectedAsync();
+        await Clients.Caller.SendAsync("connected", "SignalR Backend saying Hello :)");
     }
     
     public override async Task OnDisconnectedAsync(Exception? exception)
@@ -33,14 +32,16 @@ public class ChatHub : Hub
         await Clients.Group(newMessageDto.ZoneId.ToString()).SendAsync("ReceiveMessage", newMessageDto);
     }
 
-
-    public async Task<Guid> CreateZone(NewZoneRequestDTO newZoneRequest)
+    public async Task CheckZoneExists(string zoneId)
     {
-        //1-check if zone exists
-       // bool checkZoneExists = await _zoneService.CheckZoneExists(newZoneRequest);
-        //2-create zone in database
+        bool checkZoneExists = await _zoneService.CheckZoneExists(Guid.Parse(zoneId));
+        await Clients.Caller.SendAsync("CheckZoneExists", checkZoneExists);
+    }
+    
+    public async Task CreateZone(NewZoneRequestDTO newZoneRequest)
+    {
         Guid createdZoneId = await _zoneService.CreateZone(newZoneRequest);
-        return createdZoneId;
+        await Clients.Caller.SendAsync("ZoneCreated", createdZoneId);
     }
 
     public async Task JoinZone(string zoneId, string userId)

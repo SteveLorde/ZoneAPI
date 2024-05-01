@@ -25,7 +25,7 @@ public static class ServicesRegister
         serviceCollection.AddScoped<IPasswordHash,PasswordHash.PasswordHash>();
         serviceCollection.AddScoped<IZoneService, ZoneService >();
         serviceCollection.AddScoped<IUserRepo, UserRepo>();
-        //serviceCollection.AddScoped<INotesRepo>();
+        serviceCollection.AddScoped<INotesRepo, NotesRepo>();
         serviceCollection.AddScoped<IZoneRepo, ZoneRepo>();
         serviceCollection.AddScoped<IDataSeed, DataSeed.DataSeed>();
         serviceCollection.AddAutoMapper(typeof(AutoMappingProfile));

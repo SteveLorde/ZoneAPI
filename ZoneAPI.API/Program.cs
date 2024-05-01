@@ -10,14 +10,11 @@ using Zone.Services.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-});;;
+builder.Services.AddCors();
+builder.Services.AddSignalR();
+builder.Services.AddControllers().AddJsonOptions(options => {options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 builder.Services.AddServices();
 builder.Services.RunServices();
-builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {
@@ -27,13 +24,19 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateLifetime = true,
-        ValidateAudience = false,
+        ValidateAudience = true,
+        ValidAudience = ,
         ValidateIssuer = true,
         ValidIssuer = builder.Configuration["URL"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["SECRETKEY"]))
     };
 });
+
+builder.Services.AddCors(options => options.AddPolicy("General", builder =>
+{
+    builder.WithOrigins("https://zone-bice.vercel.app","http://localhost:5173").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+}));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -48,8 +51,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(options => options.WithOrigins("https://zone-bice.vercel.app/","http://localhost:5116").AllowAnyHeader().AllowAnyMethod());
-app.UseHttpsRedirection();
+app.UseCors("General");
+//app.UseHttpsRedirection();
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
@@ -58,5 +61,5 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.UseAuthorization();
 app.MapControllers();
-app.MapHub<ChatHub>("/Chat");
+app.MapHub<ChatHub>("/chathub").RequireCors("General");
 app.Run(builder.Configuration["URL"]);

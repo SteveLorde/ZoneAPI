@@ -18,7 +18,7 @@ public class AuthenticationTest
     public async void LoginTest()
     {
         string loginUrl = $"{_connectionURL}/authentication/login";
-        AuthRequestDTO newRequest = new AuthRequestDTO() {UserName = "testuser", Password = "1234"};
+        LoginRequestDTO newRequest = new LoginRequestDTO() {UserName = "testuser", Password = "1234"};
         HttpContent content = new StringContent(newRequest.ToString(), Encoding.UTF8, "application/json");
         var response = await _httpClient.PostAsync(loginUrl, content);
         _outputHelper.WriteLine(response.Content.ToString());
@@ -28,7 +28,7 @@ public class AuthenticationTest
     public async void RegisterTest()
     {
         string registerURL = $"{_connectionURL}/authentication/register";
-        AuthRequestDTO newRequest = new AuthRequestDTO() {UserName = "testuser", Password = "1234", Email = "test@gmail.com"};
+        RegisterRequestDTO newRequest = new RegisterRequestDTO() {UserName = "testuser", Password = "1234", Email = "test@gmail.com"};
         HttpContent content = new StringContent(newRequest.ToString(), Encoding.UTF8, "application/json");
         var response = await _httpClient.PostAsync(registerURL, content);
         _outputHelper.WriteLine(response.Content.ToString());

@@ -4,9 +4,8 @@ using Zone.Services.Services.Authentication;
 
 namespace Zone.API.Controllers;
 
-[ApiController]
 [Route("authentication")]
-public class AuthenticationController : Controller
+public class AuthenticationController : BaseController
 {
     private readonly IAuthentication _authService;
 
@@ -17,13 +16,13 @@ public class AuthenticationController : Controller
     
     [HttpPost("login")]
     [Produces("application/json")]
-    public async Task<string> Login(AuthRequestDTO loginRequest)
+    public async Task<string> Login(LoginRequestDTO loginRequest)
     {
         return await _authService.Login(loginRequest);
     }
     
     [HttpPost("register")]
-    public async Task<bool> Register(AuthRequestDTO registerRequest)
+    public async Task<bool> Register(RegisterRequestDTO registerRequest)
     {
         return await _authService.Register(registerRequest);
     }

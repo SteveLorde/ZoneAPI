@@ -16,13 +16,13 @@ public class DataSeed : IDataSeed
         _passwordHashService = passwordHashService;
     }
 
-    public async void SeedData()
+    public async Task SeedData()
     {
         if (!_db.Users.Any() && !_db.Zones.Any() && !_db.UsersInZones.Any())
         {
             List<User> usersToSeed =
             [
-                new User { Id = Guid.Parse("2e3ff341-ef97-459b-8d19-7e02f2b05f1a"), UserName = "testuser", HashedPassword = "", JoinedOn = DateTime.Today.ToString() }
+                new User { Id = Guid.Parse("2e3ff341-ef97-459b-8d19-7e02f2b05f1a"), UserName = "testuser", HashedPassword = _passwordHashService.CreateHashedPassword("1234"), JoinedOn = DateTime.Today.ToString() }
             ];
             List<ZoneLobby> zonesToSeed =
             [
