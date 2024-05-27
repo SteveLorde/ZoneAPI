@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Zone.Data;
 using Zone.Services.Services.Authentication;
 using Zone.Services.Services.AutoMapping;
+using Zone.Services.Services.Cookie;
 using Zone.Services.Services.DataSeed;
 using Zone.Services.Services.JWT;
 using Zone.Services.Services.PasswordHash;
@@ -27,6 +28,7 @@ public static class ServicesRegister
         serviceCollection.AddScoped<IUserRepo, UserRepo>();
         serviceCollection.AddScoped<INotesRepo, NotesRepo>();
         serviceCollection.AddScoped<IZoneRepo, ZoneRepo>();
+        serviceCollection.AddScoped<ICookieService, CookieService>();
         serviceCollection.AddScoped<IDataSeed, DataSeed.DataSeed>();
         serviceCollection.AddAutoMapper(typeof(AutoMappingProfile));
     }
