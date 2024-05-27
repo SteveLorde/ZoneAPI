@@ -5,7 +5,7 @@ using Zone.Services.Services.PasswordHash;
 
 namespace Zone.Services.Services.DataSeed;
 
-public class DataSeed : IDataSeed
+sealed class DataSeed : IDataSeed
 {
     private readonly DataContext _db;
     private readonly IPasswordHash _passwordHashService;

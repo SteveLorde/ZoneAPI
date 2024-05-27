@@ -7,7 +7,7 @@ using Zone.Services.Services.Repositories.ZoneRepo;
 
 namespace Zone.Services.Services.Zone;
 
-public class ZoneService : IZoneService
+sealed class ZoneService : IZoneService
 {
     private readonly IZoneRepo _zoneRepo;
     private readonly IMapper _mapper;

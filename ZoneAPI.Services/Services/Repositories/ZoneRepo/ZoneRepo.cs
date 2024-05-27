@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Zone.Data;
 using Zone.Data.DTOs.Responses;
@@ -7,15 +8,17 @@ using Zone.Data.Models;
 
 namespace Zone.Services.Services.Repositories.ZoneRepo;
 
-public class ZoneRepo : IZoneRepo
+sealed class ZoneRepo : IZoneRepo
 {
     private readonly DataContext _db;
     private readonly IMapper _mapper;
+    private readonly IWebHostEnvironment _webenv;
 
-    public ZoneRepo(DataContext db, IMapper mapper)
+    public ZoneRepo(DataContext db, IMapper mapper, IWebHostEnvironment webenv)
     {
         _db = db;
         _mapper = mapper;
+        _webenv = webenv;
     }
     
     public async Task<List<ZoneResponseDTO>> GetZones()
@@ -57,5 +60,16 @@ public class ZoneRepo : IZoneRepo
     public async Task<bool> CheckZoneExists(Guid zoneId)
     {
         return await _db.Zones.AnyAsync(zone => zone.Id == zoneId);
+    }
+
+    public async Task CreateZonesFolders()
+    {
+        string storageZonesDirectory = Path.Combine(_webenv.ContentRootPath,"Storage","Users");
+        List<ZoneLobby> zones = await _db.Zones.ToListAsync();
+        foreach (var zone in zones)
+        {
+            string zoneFolder = Path.Combine(_webenv.ContentRootPath,"Storage","Users",$"{zone.Id}");
+            Directory.CreateDirectory(zoneFolder);
+        }
     }
 }

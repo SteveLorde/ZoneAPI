@@ -2,7 +2,7 @@
 
 namespace Zone.Services.Services.Repositories.NotesRepo;
 
-public class NotesRepo : INotesRepo
+sealed class NotesRepo : INotesRepo
 {
     public async Task GetNote(Guid noteId)
     {

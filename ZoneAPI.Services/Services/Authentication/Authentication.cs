@@ -9,7 +9,7 @@ using Zone.Services.Services.Repositories.UserRepo;
 
 namespace Zone.Services.Services.Authentication;
 
-public class Authentication : IAuthentication
+sealed class Authentication : IAuthentication
 {
     private readonly IPasswordHash _passwordHash;
     private readonly IMapper _mapper;

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Zone.Services.Services.PasswordHash;
 
-public class PasswordHash : IPasswordHash
+sealed class PasswordHash : IPasswordHash
 {
     public string CreateHashedPassword(string password)
     {

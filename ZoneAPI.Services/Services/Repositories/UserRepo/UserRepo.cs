@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Zone.Data;
 using Zone.Data.DTOs;
@@ -9,17 +10,18 @@ using Zone.Services.Services.Authentication.DTO;
 
 namespace Zone.Services.Services.Repositories.UserRepo;
 
-public class UserRepo : IUserRepo
+sealed class UserRepo : IUserRepo
 {
     private readonly DataContext _db;
     private readonly IMapper _mapper;
+    private readonly IWebHostEnvironment _webenv;
 
-    public UserRepo(DataContext db, IMapper mapper)
+    public UserRepo(DataContext db, IMapper mapper, IWebHostEnvironment webenv)
     {
         _db = db;
         _mapper = mapper;
+        _webenv = webenv;
     }
-    
     
     public async Task<List<UserResponseDTO>> GetUsers()
     {
@@ -61,4 +63,19 @@ public class UserRepo : IUserRepo
     {
         throw new NotImplementedException();
     }
+
+    public async Task CreateUsersFolders()
+    {
+        string storageUsersDirectory = Path.Combine(_webenv.ContentRootPath,"Storage","Users");
+        List<User> users = await _db.Users.ToListAsync();
+        foreach (var user in users)
+        {
+            string userFolder = Path.Combine(_webenv.ContentRootPath,"Storage","Users",$"{user.Id}");
+            Directory.CreateDirectory(userFolder);
+        }
+    }
+    
+    
+    
+    
 }

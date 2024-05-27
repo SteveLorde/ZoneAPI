@@ -8,6 +8,7 @@ using Zone.Services.Services.Zone;
 
 namespace Zone.API.Controllers.Hubs.ChatHub;
 
+//THE HUB TOKEN CHECKING IS AUTOMATICALLY HANDLED BY THE API
 public class ChatHub : BaseHub
 {
     private readonly IZoneService _zoneService;
@@ -55,7 +56,9 @@ public class ChatHub : BaseHub
             //add user to zone in database
             await _zoneService.AddUserToZone(userGuid, zoneGuid);
             await Groups.AddToGroupAsync(Context.ConnectionId, zone.Id.ToString());
-            await Clients.Group(zone.Id.ToString()).SendAsync("JoinedZone", $"User {Context.ConnectionId} joined Zone {zone.Id.ToString()}");
+            await Clients.Caller.SendAsync("JoinedZone", true);
+            await Clients.Caller.SendAsync("ZoneData", zone);
+            await Clients.Group(zone.Id.ToString()).SendAsync("UserJoinedZone", $"User {Context.ConnectionId} joined Zone {zone.Id.ToString()}");
         }
         else
         {

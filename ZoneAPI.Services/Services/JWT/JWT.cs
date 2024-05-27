@@ -9,14 +9,13 @@ using Zone.Services.Services.JWT.DTO;
 
 namespace Zone.Services.Services.JWT;
 
-public class JWT : IJWT
+sealed class JWT : IJWT
 {
     private IConfiguration _config;
 
-    private string jwtseckey;
-    private string audienceClientURL;
+    private string? jwtseckey;
+    private string? audienceClientURL;
     private string baseUrl;
-    private readonly IWebHostEnvironment _webenv;
     private readonly IHttpContextAccessor _httpContextAccessor;
     
     public JWT(IConfiguration config, IHttpContextAccessor httpContextAccessor)

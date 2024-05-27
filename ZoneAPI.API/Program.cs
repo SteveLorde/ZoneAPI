@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Zone.API;
 using Zone.API.Controllers.Hubs;
 using Zone.API.Controllers.Hubs.ChatHub;
+using Zone.API.Middleware;
 using Zone.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +26,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
     {
         ValidateLifetime = true,
         ValidateAudience = true,
-        ValidAudience = ,
+        ValidAudience = builder.Configuration["JWT:Audience"],
         ValidateIssuer = true,
         ValidIssuer = builder.Configuration["URL"],
         ValidateIssuerSigningKey = true,
@@ -60,6 +61,7 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/storage"
 });
 app.UseAuthorization();
+app.UseMiddleware<CookieMiddleware>();
 app.MapControllers();
 app.MapHub<ChatHub>("/chathub").RequireCors("General");
 app.Run(builder.Configuration["URL"]);

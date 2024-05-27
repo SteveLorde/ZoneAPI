@@ -12,5 +12,6 @@ public interface IZoneRepo
     public Task<bool> AddZone(ZoneLobby newZoneLobby);
     public Task<bool> UpdateZone(ZoneLobby updatedZoneLobby);
     public Task<bool> RemoveZone(ZoneLobby zoneLobbyToRemove);
+    public Task CreateZonesFolders();
 
 }

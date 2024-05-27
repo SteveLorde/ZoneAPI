@@ -13,5 +13,6 @@ public interface IUserRepo
     public Task<bool> CheckUserExists(string userName);
     public Task<UserToLoginDataDTO> GetHashedpassword(string userName);
     public Task<bool> AddUser(UserDTO newUserDTO, string hashedPassword);
+    public Task CreateUsersFolders();
     public Task RemoveUser(string userId);
 }
